@@ -1,0 +1,11 @@
+version: '3'
+services:
+  pub:
+    image: node:14
+    working_dir: /home/node/app
+    volumes:
+      - ./pub:/home/node/app
+    environment:
+      NODE_ENV: local
+      GOOGLE_APPLICATION_CREDENTIALS: /home/node/app/credentials.json
+    command: npm start
