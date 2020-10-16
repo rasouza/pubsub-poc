@@ -1,23 +1,4 @@
-const { PubSub } = require('@google-cloud/pubsub')
-
-const ALREADY_EXISTS = 6
-
-const client = new PubSub()
-const listTopics = async () => {
-  const [topics] = await client.getTopics()
-  console.log(topics.map(topic => topic.name))
-}
-
-const createTopic = async topic => {
-  try {
-    await client.createTopic(topic)
-    console.log(`Topic ${topic} created`)
-  } catch (error) {
-    if (error.code === ALREADY_EXISTS) {
-      console.warn(`Topic '${topic}' already exists. Skipping topic creation...`)
-    }
-  }
-}
+const { client, createTopic, listAll } = require('./pub-utils')
 
 const publish = async (topic, message) => {
   const data = JSON.stringify(message)
@@ -25,7 +6,7 @@ const publish = async (topic, message) => {
   console.log('Sending message', data)
 }
 
-listTopics()
+listAll()
 createTopic('test')
 publish('test', { patient: 20, date: new Date() })
 
