@@ -2,7 +2,7 @@ const { client, createSubscription } = require('./sub-utils')
 
 const processMessage = message => {
   console.log(new Date(), message.data.toString())
-  message.ack()
+  // message.ack() // Enforce retry policy
 }
 
 const runWorker = async name => {
@@ -11,8 +11,8 @@ const runWorker = async name => {
   subscription.on('message', processMessage)
 }
 
-createSubscription('test', 'beneficiary-patients')
-runWorker('beneficiary-patients')
+createSubscription('test', 'beneficiary-patient')
+runWorker('beneficiary-patient')
 
 process.on('unhandledRejection', err => {
   console.error(err.message)
