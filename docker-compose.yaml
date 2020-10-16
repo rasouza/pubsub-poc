@@ -8,4 +8,4 @@ services:
     environment:
       NODE_ENV: local
       GOOGLE_APPLICATION_CREDENTIALS: /home/node/app/credentials.json
-    command: npm start
+    command: npm run dev

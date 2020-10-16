@@ -4,12 +4,17 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
     "@google-cloud/pubsub": "^2.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.5",
+    "standardjs": "^1.0.0-alpha"
   }
 }
