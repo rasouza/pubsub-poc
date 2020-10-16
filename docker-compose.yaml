@@ -9,3 +9,13 @@ services:
       NODE_ENV: local
       GOOGLE_APPLICATION_CREDENTIALS: /home/node/app/credentials.json
     command: npm run dev
+
+  sub1:
+    image: node:14
+    working_dir: /home/node/app
+    volumes:
+      - ./sub1:/home/node/app
+    environment:
+      NODE_ENV: local
+      GOOGLE_APPLICATION_CREDENTIALS: /home/node/app/credentials.json
+    command: npm run dev
