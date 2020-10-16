@@ -13,17 +13,19 @@ const createTopic = async topic => {
     await client.createTopic(topic)
     console.log(`Topic ${topic} created`)
   } catch (error) {
-    if (error.code === ALREADY_EXISTS) console.warn(error)
+    if (error.code === ALREADY_EXISTS) 
+      console.warn(`Topic '${topic}' already exists. Skipping topic creation...`)
   }
 }
 
 const publish = async (topic, message) => {
-  const myTopic = client.topic(topic)
-  // console.log(myTopic)
+  const data = JSON.stringify(message)
+  client.topic(topic).publish(Buffer.from(data))
+  console.log('Sending message', data)
 }
 
 createTopic('test')
-publish('test', null)
+publish('test', { patient: 20})
 
 process.on('unhandledRejection', err => {
   console.error(err.message)
